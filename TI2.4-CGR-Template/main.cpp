@@ -20,8 +20,8 @@ void enable_wireframe();
 
 
 float angle = 0.0f;
-float width = 1080;
-float height = 750;
+float width = 1920;
+float height = 1080;
 float kube_x = 0.0f;
 float increment_value = 0.25f;
 
@@ -33,7 +33,7 @@ int main(void)
 {
     if (!glfwInit())
         throw "Could not initialize glwf";
-    window = glfwCreateWindow(1400, 800, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(width, height, "Hello World", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -86,7 +86,7 @@ void init()
 
 void update()
 {
-    angle += 0.02f;
+    angle += 0.05f;
 }
 
 void draw()
@@ -102,24 +102,30 @@ void draw()
     else {
         tigl::shader->setProjectionMatrix(glm::perspective(glm::radians(70.0f), width / height, 0.1f, 200.0f));
     }
-    tigl::shader->setViewMatrix(glm::lookAt(glm::vec3(0, 3, 8), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)));
+    tigl::shader->setViewMatrix(glm::lookAt(glm::vec3(0, 3, 6), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)));
   
     // Draw first cube and set the projection matrix
     glm::mat4 modelMatrix1 = glm::mat4(1.0f);
-    modelMatrix1 = glm::translate(modelMatrix1, glm::vec3(kube_x, 0.0f, 0.0f));
-    tigl::shader->setModelMatrix(glm::rotate(modelMatrix1, glm::radians(angle), glm::vec3(0, 1.0f, 0)));
+    modelMatrix1 = glm::translate(modelMatrix1, glm::vec3(kube_x + 0.5f, 0.5f, 0.5f));
+    modelMatrix1 = glm::rotate(modelMatrix1, glm::radians(angle), glm::vec3(0, 1.0f, 0));
+    modelMatrix1 = glm::translate(modelMatrix1, glm::vec3(-0.5f, -0.5f, -0.5f));
+    tigl::shader->setModelMatrix(modelMatrix1);
     draw_kube();
 
     // Draw second cube
     glm::mat4 modelMatrix2 = glm::mat4(1.0f);
-    modelMatrix2 = glm::translate(modelMatrix2, glm::vec3(-5, 0, 0));
-    tigl::shader->setModelMatrix(glm::rotate(modelMatrix2, glm::radians(angle), glm::vec3(1.0f, 0, 0)));
+    modelMatrix2 = glm::translate(modelMatrix2, glm::vec3(-3 + 0.5f, 0.5f, 0.5f));
+    modelMatrix2 = glm::rotate(modelMatrix2, glm::radians(angle), glm::vec3(1.0f, 0, 0));
+    modelMatrix2 = glm::translate(modelMatrix2, glm::vec3(-0.5f, -0.5f, -0.5f));
+    tigl::shader->setModelMatrix(modelMatrix2);
     draw_kube();
 
     // Draw third cube
     glm::mat4 modelMatrix3 = glm::mat4(1.0f);
-    modelMatrix3 = glm::translate(modelMatrix3, glm::vec3(5, 0, 0));
-    tigl::shader->setModelMatrix(glm::rotate(modelMatrix3, glm::radians(angle), glm::vec3(0, 0, 1.0f)));
+    modelMatrix3 = glm::translate(modelMatrix3, glm::vec3(3 + 0.5f, 0.5f, 0.5f));
+    modelMatrix3 = glm::rotate(modelMatrix3, glm::radians(angle), glm::vec3(0, 0, 1.0f));
+    modelMatrix3 = glm::translate(modelMatrix3, glm::vec3(-0.5f, -0.5f, -0.5f));
+    tigl::shader->setModelMatrix(modelMatrix3);
     draw_kube();
 
     // Draw fourth cube
