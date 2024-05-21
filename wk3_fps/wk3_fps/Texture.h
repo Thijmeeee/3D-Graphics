@@ -8,7 +8,7 @@ class Texture
 {
 	GLuint id;
 public:
-	Texture(const std::string& fileName);
+	Texture(const std::string& fileName, bool flipped);
 	void bind();
 	void unbind();
 };

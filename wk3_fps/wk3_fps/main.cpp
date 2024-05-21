@@ -126,9 +126,9 @@ void init()
         });
     camera = new FpsCam(window);
 
-    minecraft_ground_texture = new Texture("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\minecraft.jpg");
+    minecraft_ground_texture = new Texture("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\minecraft.jpg", false);
 
-    steve_texture = new Texture("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\steve.png");
+    steve_texture = new Texture("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\steve.png", true);
 	steve1 = new ObjModel("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\Steve.obj");
 	steve2 = new ObjModel("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\Steve.obj");
 	steve3 = new ObjModel("C:\\Github\\3D-Graphics\\wk3_fps\\wk3_fps\\Steve.obj");
@@ -170,7 +170,7 @@ void draw()
     minecraft_ground_texture->bind();
     for (int i = 0; i <= SIZE_X; i++) {
         for (int j = 0; j <= SIZE_Z; j++) {
-            draw_kube(10, i, j);
+            draw_kube(2, i, j);
         }
     }
 
